@@ -11,7 +11,7 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(AlternateSpamAssist VERSION 1.0.0)
 
-add_library(${PROJECT_NAME} SHARED main.cpp)
+add_library(${PROJECT_NAME} SHARED main.cpp pause.cpp)
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
