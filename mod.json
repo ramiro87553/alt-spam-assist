@@ -11,28 +11,156 @@
 	"developer": "ramiro87553",
 	"description": "Assists spam clicking with humanized timing and ship straight-flight.",
 	"settings": {
-		"enabled": { "type": "bool", "name": "Enabled", "default": true },
-		"show-indicator": { "type": "bool", "name": "Show Indicator", "default": true },
-		"mode": { "type": "string", "name": "Mode", "default": "Match", "one-of": ["Match", "Fixed"] },
-		"fixed-cps": { "type": "float", "name": "Fixed CPS", "default": 12.0, "min": 2.0, "max": 60.0 },
-		"max-cps": { "type": "float", "name": "Max CPS", "default": 30.0, "min": 2.0, "max": 60.0 },
-		"alternate-players": { "type": "bool", "name": "Alternate Players (Dual)", "default": true },
-		"trigger-keys-only": { "type": "bool", "name": "Only Use Trigger Keys", "default": false },
-		"trigger-keybinds": { "type": "keybind", "name": "Trigger Keybinds", "default": "F" },
-		"window-ms": { "type": "int", "name": "Detection Window (ms)", "default": 700, "min": 100, "max": 3000 },
-		"min-clicks": { "type": "int", "name": "Min Clicks", "default": 5, "min": 2, "max": 30 },
-		"cps-threshold": { "type": "float", "name": "CPS Threshold", "default": 6.0, "min": 2.0, "max": 40.0 },
-		"smart-detect": { "type": "bool", "name": "Smart Detect", "default": true },
-		"consistency": { "type": "float", "name": "Consistency", "default": 0.35, "min": 0.05, "max": 1.0 },
-		"hold-release-ms": { "type": "int", "name": "Hold Release (ms)", "default": 250, "min": 50, "max": 2000 },
-		"idle-timeout-ms": { "type": "int", "name": "Idle Timeout (ms)", "default": 250, "min": 50, "max": 2000 },
-		"duty-cycle": { "type": "int", "name": "Duty Cycle (%)", "default": 50, "min": 10, "max": 90 },
-		"ship-straight": { "type": "bool", "name": "Ship Straight Flight", "default": true },
-		"ship-correction": { "type": "float", "name": "Ship Correction", "default": 1.0, "min": 0.1, "max": 5.0 },
-		"humanize": { "type": "bool", "name": "Humanize", "default": true },
-		"humanize-ship": { "type": "bool", "name": "Humanize In Ship", "default": false },
-		"humanize-timing": { "type": "float", "name": "Humanize Timing (%)", "default": 15.0, "min": 0.0, "max": 50.0 },
-		"humanize-drift": { "type": "float", "name": "Humanize Drift (CPS)", "default": 1.5, "min": 0.0, "max": 10.0 },
-		"humanize-miss": { "type": "float", "name": "Humanize Miss (%)", "default": 0.0, "min": 0.0, "max": 20.0 }
+		"enabled": {
+			"type": "bool",
+			"name": "Enabled",
+			"default": true
+		},
+		"show-indicator": {
+			"type": "bool",
+			"name": "Show Indicator",
+			"default": true
+		},
+		"mode": {
+			"type": "string",
+			"name": "Mode",
+			"default": "Match",
+			"one-of": [
+				"Match",
+				"Fixed"
+			]
+		},
+		"fixed-cps": {
+			"type": "float",
+			"name": "Fixed CPS",
+			"default": 12.0,
+			"min": 2.0,
+			"max": 60.0
+		},
+		"max-cps": {
+			"type": "float",
+			"name": "Max CPS",
+			"default": 30.0,
+			"min": 2.0,
+			"max": 60.0
+		},
+		"alternate-players": {
+			"type": "bool",
+			"name": "Alternate Players (Dual)",
+			"default": true
+		},
+		"trigger-keys-only": {
+			"type": "bool",
+			"name": "Only Use Trigger Keys",
+			"default": false
+		},
+		"trigger-keybinds": {
+			"type": "keybind",
+			"name": "Trigger Keybinds",
+			"default": "F"
+		},
+		"window-ms": {
+			"type": "int",
+			"name": "Detection Window (ms)",
+			"default": 700,
+			"min": 100,
+			"max": 3000
+		},
+		"min-clicks": {
+			"type": "int",
+			"name": "Min Clicks",
+			"default": 5,
+			"min": 2,
+			"max": 30
+		},
+		"cps-threshold": {
+			"type": "float",
+			"name": "CPS Threshold",
+			"default": 6.0,
+			"min": 2.0,
+			"max": 40.0
+		},
+		"smart-detect": {
+			"type": "bool",
+			"name": "Smart Detect",
+			"default": true
+		},
+		"consistency": {
+			"type": "float",
+			"name": "Consistency",
+			"default": 0.35,
+			"min": 0.05,
+			"max": 1.0
+		},
+		"hold-release-ms": {
+			"type": "int",
+			"name": "Hold Release (ms)",
+			"default": 250,
+			"min": 50,
+			"max": 2000
+		},
+		"idle-timeout-ms": {
+			"type": "int",
+			"name": "Idle Timeout (ms)",
+			"default": 250,
+			"min": 50,
+			"max": 2000
+		},
+		"duty-cycle": {
+			"type": "int",
+			"name": "Duty Cycle (%)",
+			"default": 50,
+			"min": 10,
+			"max": 90
+		},
+		"ship-straight": {
+			"type": "bool",
+			"name": "Ship Straight Flight",
+			"default": true
+		},
+		"ship-auto": {
+			"type": "bool",
+			"name": "Ship Auto Straight (on ship entry)",
+			"description": "Straight flight starts by itself in a ship, no spam needed. A real click gives you control back.",
+			"default": false
+		},
+		"ship-correction": {
+			"type": "float",
+			"name": "Ship Correction",
+			"default": 1.0,
+			"min": 0.1,
+			"max": 5.0
+		},
+		"humanize": {
+			"type": "bool",
+			"name": "Humanize",
+			"default": true
+		},
+		"humanize-ship": {
+			"type": "bool",
+			"name": "Humanize In Ship",
+			"default": false
+		},
+		"humanize-timing": {
+			"type": "float",
+			"name": "Humanize Timing (%)",
+			"default": 15.0,
+			"min": 0.0,
+			"max": 50.0
+		},
+		"humanize-drift": {
+			"type": "float",
+			"name": "Humanize Drift (CPS)",
+			"default": 1.5,
+			"min": 0.0,
+			"max": 10.0
+		},
+		"humanize-miss": {
+			"type": "float",
+			"name": "Humanize Miss (%)",
+			"default": 0.0,
+			"min": 0.0,
+			"max": 20.0
+		}
 	}
 }
